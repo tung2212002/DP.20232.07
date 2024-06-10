@@ -1,9 +1,6 @@
 package StragetyPayment;
 
-import StragetyPayment.IPaymentStrategy;
-import entity.payment.Card;
-import entity.payment.CreditCard;
-import entity.payment.PaymentTransaction;
+import entity.payment.PaymentDetail;
 
 public class PaymentContext {
     private IPaymentStrategy strategy;
@@ -16,8 +13,8 @@ public class PaymentContext {
         this.strategy = strategy;
     }
 
-    public PaymentTransaction executePayment(Card card, int amount, String contents) {
-        return strategy.payOrder(card, amount, contents);
+    public PaymentDetail executePayment(int amount, String contents) {
+        return strategy.payOrder(amount, contents);
     }
 
 }

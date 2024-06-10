@@ -27,6 +27,10 @@ import subsystem.interbank.InterbankSubsystemController;
 
 public class InterbankSubsystem implements InterbankInterface, IPaymentStrategy {
 
+	public InterbankSubsystem(Card card) {
+		this.card = card;
+	}
+	private Card card;
 	/**
 	 * Represent the controller of the subsystem
 	 */
@@ -47,6 +51,11 @@ public class InterbankSubsystem implements InterbankInterface, IPaymentStrategy 
 	 */
 	public PaymentTransaction payOrder(Card card, int amount, String contents) {
 		PaymentTransaction transaction = ctrl.payOrder(card, amount, contents);
+		return transaction;
+	}
+
+	public PaymentTransaction payOrder(int amount, String contents) {
+		PaymentTransaction transaction = payOrder(card, amount, contents);
 		return transaction;
 	}
 

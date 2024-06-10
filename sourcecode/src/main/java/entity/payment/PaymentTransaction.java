@@ -7,7 +7,7 @@ package entity.payment;
 /*
  * SOLID: Dependency inversion principle: PaymentTransaction phụ thuộc vào CreditCard ảnh hưởng đến việc mở rộng nếu có thêm phương thức thanh toán khác
  */
-public class PaymentTransaction {
+public class PaymentTransaction extends PaymentDetail {
 	private String errorCode;
 	private Card card;
 	private String transactionId;

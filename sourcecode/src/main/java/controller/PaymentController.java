@@ -13,6 +13,7 @@ import dto.payment.CardDTO;
 import entity.cart.Cart;
 import entity.payment.Card;
 import entity.payment.CreditCard;
+import entity.payment.PaymentDetail;
 import entity.payment.PaymentTransaction;
 import entity.payment.type.CardType;
 import factory.payment.CardFactoryProvider;
@@ -94,8 +95,8 @@ public class PaymentController extends BaseController {
 			this.card = factory.create(cartInfo);
 
 			this.interbank = new InterbankSubsystem();
-			PaymentContext context = new PaymentContext(new InterbankSubsystem());
-			PaymentTransaction transaction = context.executePayment(card, amount, contents);
+			PaymentContext context = new PaymentContext(new InterbankSubsystem(card));
+			PaymentDetail transaction = context.executePayment(amount, contents);
 
 			result.put("RESULT", "PAYMENT SUCCESSFUL!");
 			result.put("MESSAGE", "You have successfully paid the order!");

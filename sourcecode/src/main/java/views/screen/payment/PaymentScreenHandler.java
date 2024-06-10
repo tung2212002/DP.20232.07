@@ -9,8 +9,10 @@ import entity.payment.type.CardType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
@@ -29,6 +31,12 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	private Button btnConfirmPayment;
 
 	@FXML
+	private RadioButton card;
+
+	@FXML
+	private RadioButton cod;
+
+	@FXML
 	private ImageView loadingImage;
 
 	private Invoice invoice;
@@ -40,13 +48,30 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	private TextField cardNumber;
 
 	@FXML
+	private VBox credit;
+
+	@FXML
+	private VBox domestic;
+
+	@FXML
+	private VBox cardInfo;
+
+	@FXML
 	private TextField holderName;
 
 	@FXML
 	private TextField expirationDate;
 
 	@FXML
+	private RadioButton domesticCard;
+	@FXML
 	private TextField securityCode;
+
+	@FXML
+	private TextField validFrom;
+
+	@FXML
+	private TextField issueBank;
 
 	private CardType cardType;
 
@@ -69,6 +94,30 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 			} catch (Exception exp) {
 				System.out.println(exp.getStackTrace());
 			}
+		});
+		card.setOnMouseClicked(e -> {
+			cardInfo.setDisable(false);
+			cardInfo.setVisible(true);
+			domestic.setVisible(false);
+			credit.setVisible(true);
+
+			btnConfirmPayment.setOnMouseClicked(f -> {
+				try {
+					confirmToPayOrder();
+					Cart.getInstance().emptyCart();
+				} catch (Exception exp) {
+					System.out.println(exp.getStackTrace());
+				}
+			});
+		});
+		cod.setOnMouseClicked(e -> {
+			cardInfo.setDisable(true);
+		});
+		domesticCard.setOnMouseClicked(e -> {
+			cardInfo.setDisable(false);
+			cardInfo.setVisible(true);
+			domestic.setVisible(true);
+			credit.setVisible(false);
 		});
 	}
 
