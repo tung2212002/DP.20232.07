@@ -31,7 +31,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	private Button btnConfirmPayment;
 
 	@FXML
-	private RadioButton card;
+	private RadioButton creditCard;
 
 	@FXML
 	private RadioButton cod;
