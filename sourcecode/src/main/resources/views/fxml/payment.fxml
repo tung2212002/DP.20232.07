@@ -34,7 +34,7 @@
       </Label>
       <VBox layoutX="114.0" layoutY="163.0" prefHeight="500.0" prefWidth="500.0">
          <children>
-            <RadioButton fx:id="CreditCard" disable="true" mnemonicParsing="false" selected="true" text="CreditCard">
+            <RadioButton fx:id="creditCard" disable="true" mnemonicParsing="false" selected="true" text="CreditCard">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
