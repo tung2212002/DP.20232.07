@@ -95,7 +95,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 				System.out.println(exp.getStackTrace());
 			}
 		});
-		card.setOnMouseClicked(e -> {
+		creditCard.setOnMouseClicked(e -> {
 			cardInfo.setDisable(false);
 			cardInfo.setVisible(true);
 			domestic.setVisible(false);
