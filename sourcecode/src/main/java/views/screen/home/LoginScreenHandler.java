@@ -61,18 +61,18 @@ public class LoginScreenHandler extends BaseScreenHandler{
     }
 
     @FXML
-    void login(MouseEvent event) throws IOException, InterruptedException, SQLException {
+    void login() throws IOException, InterruptedException, SQLException {
         try {
             getBController().login(email.getText(), password.getText());
             PopupScreen.success("Login Successfully!");
-            backToHomeScreen(event);
+            backToHomeScreen();
         } catch (Exception ex) {
             PopupScreen.error(ex.getMessage());
         }
     }
 
     @FXML
-    void backToHomeScreen(MouseEvent event) throws IOException, InterruptedException, SQLException {
+    void backToHomeScreen() throws IOException, InterruptedException, SQLException {
         this.homeScreenHandler.show();
     }
 }

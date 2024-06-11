@@ -103,22 +103,25 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		});
 
 		paymentMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-					System.out.println("Selected: " + newValue);
-					if (newValue == creditCard) {
-						cardInfo.setDisable(false);
-						cardInfo.setVisible(true);
-						domestic.setVisible(false);
-						credit.setVisible(true);
-					} else if (newValue == cod) {
-						cardInfo.setDisable(true);
-					} else if (newValue == domesticCard) {
-						cardInfo.setDisable(false);
-						cardInfo.setVisible(true);
-						domestic.setVisible(true);
-						credit.setVisible(false);
-							}
-						});
-					}
+
+
+			if (newValue == creditCard) {
+				cardInfo.setDisable(false);
+				cardInfo.setVisible(true);
+				domestic.setVisible(false);
+				credit.setVisible(true);
+			} else if (newValue == cod) {
+				cardInfo.setDisable(true);
+			} else if (newValue == domesticCard) {
+				cardInfo.setDisable(false);
+				cardInfo.setVisible(true);
+				domestic.setVisible(true);
+				credit.setVisible(false);
+			}
+		});
+	}
+
+
 	// Common coupling: confirmToPayOrder sử dụng global data ViewsConfig là RESULT_SCREEN_PATH
 	void confirmToPayOrder() throws Exception{
 		String contents = "pay order";

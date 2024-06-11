@@ -9,6 +9,7 @@ import controller.BaseController;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import utils.Utils;
+import views.screen.error.ErrorNotify;
 import views.screen.home.HomeScreenHandler;
 import views.screen.popup.PopupScreen;
 
@@ -26,6 +27,7 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 	protected HomeScreenHandler homeScreenHandler;
 	protected Hashtable<String, String> messages;
 	private BaseController bController;
+	private ErrorNotify errorNotify;
 
 	/*
 	 * Design Patterns - Template Method: Do các lớp con đều thực hiện việc
@@ -40,7 +42,8 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 			setupFunctionality();
 		} catch (IOException ex) {
 			LOGGER.info(ex.getMessage());
-			PopupScreen.error("Error when loading resources.");
+//			PopupScreen.error("Error when loading resources.");
+			notifyError(ex);
 		} catch (Exception ex) {
 			LOGGER.info(ex.getMessage());
 			PopupScreen.error(ex.getMessage());
@@ -85,6 +88,14 @@ public abstract class BaseScreenHandler extends FXMLScreenHandler {
 
 	public void setHomeScreenHandler(HomeScreenHandler HomeScreenHandler) {
 		this.homeScreenHandler = HomeScreenHandler;
+	}
+
+	public void setErrorNotify(ErrorNotify errorNotify) {
+		this.errorNotify = errorNotify;
+	}
+
+	protected void notifyError(Exception ex) throws IOException {
+		errorNotify.notify(ex.getMessage());
 	}
 
 }
