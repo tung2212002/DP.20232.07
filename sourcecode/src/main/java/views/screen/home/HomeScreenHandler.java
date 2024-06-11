@@ -95,7 +95,7 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
             this.homeItems = new ArrayList<>();
             for (Object object : mediaList ) {
                 Media media = (Media) object;
-                MediaHandler m = new MediaHandler(ViewsConfig.HOME_MEDIA_PATH, media);
+                MediaHandler m = new MediaHandler(ViewsConfig.HOME_MEDIA_PATH, media, this.stage);
                 m.attach(this);
                 this.homeItems.add(m);
             }
