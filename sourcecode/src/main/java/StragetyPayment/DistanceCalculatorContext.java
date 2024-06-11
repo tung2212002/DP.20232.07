@@ -1,5 +1,7 @@
 package StragetyPayment;
 
+import entity.order.Order;
+
 public class DistanceCalculatorContext {
     private IDistanceCalculatorStrategy strategy;
 
@@ -11,7 +13,7 @@ public class DistanceCalculatorContext {
         this.strategy = strategy;
     }
 
-    public int calculateDistance(String address, String province) {
-        return strategy.calculateDistance(address, province);
+    public int calculateShippingFee(Order order) {
+        return strategy.calculateFee(order);
     }
 }

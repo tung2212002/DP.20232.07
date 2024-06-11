@@ -79,9 +79,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	@FXML
 	private TextField issueBank;
 
-	@FXML
-	private ToggleGroup paymentMethod;
-
 	private CardType cardType;
 
 
@@ -104,44 +101,26 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 				System.out.println(exp.getStackTrace());
 			}
 		});
-<<<<<<< Updated upstream
 
 		paymentMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("Selected: " + newValue);
-			if (newValue == creditCard) {
-				cardInfo.setDisable(false);
-				cardInfo.setVisible(true);
-				domestic.setVisible(false);
-				credit.setVisible(true);
-			} else if (newValue == cod) {
-				cardInfo.setDisable(true);
-			} else if (newValue == domesticCard) {
-				cardInfo.setDisable(false);
-				cardInfo.setVisible(true);
-				domestic.setVisible(true);
-				credit.setVisible(false);
-=======
-		paymentMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue == creditCard) {
-				cardInfo.setVisible(true);
-				creditCard.setVisible(true);
-				domestic.setVisible(false);
-			} else if (newValue == cod) {
-				cardInfo.setVisible(false);
-				creditCard.setVisible(false);
-				domestic.setVisible(false);
-			} else if (newValue == domesticCard)
-			{
-				cardInfo.setVisible(true);
-				creditCard.setVisible(false);
-				domestic.setVisible(true);
->>>>>>> Stashed changes
-			}
-		});
-	}
-
+					System.out.println("Selected: " + newValue);
+					if (newValue == creditCard) {
+						cardInfo.setDisable(false);
+						cardInfo.setVisible(true);
+						domestic.setVisible(false);
+						credit.setVisible(true);
+					} else if (newValue == cod) {
+						cardInfo.setDisable(true);
+					} else if (newValue == domesticCard) {
+						cardInfo.setDisable(false);
+						cardInfo.setVisible(true);
+						domestic.setVisible(true);
+						credit.setVisible(false);
+							}
+						});
+					}
 	// Common coupling: confirmToPayOrder sử dụng global data ViewsConfig là RESULT_SCREEN_PATH
-	void confirmToPayOrder() throws IOException{
+	void confirmToPayOrder() throws Exception{
 		String contents = "pay order";
 		PaymentController ctrl = (PaymentController) getBController();
 		this.cardType = CardType.CREDIT;
@@ -150,8 +129,13 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		Card card = factory.create(cardInfo);
 		InterbankSubsystem interbank = new InterbankSubsystem(card);
 		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, interbank);
-		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, ViewsConfig.RESULT_SCREEN_PATH, response);
-		resultScreen.setPreviousScreen(this);
+				BaseScreenHandler resultScreen = null;
+				try {
+					resultScreen = new ResultScreenHandler(this.stage, ViewsConfig.RESULT_SCREEN_PATH, response);
+				} catch (IOException e) {
+					throw new RuntimeException(e);
+				}
+				resultScreen.setPreviousScreen(this);
 		resultScreen.setHomeScreenHandler(homeScreenHandler);
 		resultScreen.setScreenTitle("Result Screen");
 		resultScreen.show();
