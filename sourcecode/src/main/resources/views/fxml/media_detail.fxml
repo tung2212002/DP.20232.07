@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox prefHeight="400.0" prefWidth="257.0">
+         <children>
+            <Label fx:id="title" prefHeight="49.0" prefWidth="268.0" text="Label" textAlignment="CENTER">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="img" fitHeight="247.0" fitWidth="260.0" pickOnBounds="true" preserveRatio="true" />
+            <HBox prefHeight="37.0" prefWidth="260.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Quantity:" wrappingWidth="133.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="quantity" layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="37.0" prefWidth="268.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Price:" wrappingWidth="133.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="price" layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+            <HBox prefHeight="43.0" prefWidth="268.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Category: " wrappingWidth="133.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+                  <Text fx:id="category" layoutX="10.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="133.7392578125">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                  </Text>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox fx:id="detail" layoutX="300.0" layoutY="8.0" prefHeight="393.0" prefWidth="302.0" />
+   </children>
+</AnchorPane>

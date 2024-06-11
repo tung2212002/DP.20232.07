@@ -20,6 +20,7 @@ import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.FXMLScreenHandler;
 import views.screen.ViewsConfig;
@@ -49,12 +50,39 @@ public class MediaHandler extends FXMLScreenHandler implements Observable {
     private Media media;
     private List<Observer> observerList;
 
-    public MediaHandler(String screenPath, Media media) throws SQLException, IOException {
+    private Stage stage;
+
+    public MediaHandler(String screenPath, Media media, Stage stage) throws SQLException, IOException {
         super(screenPath);
         this.media = media;
+        this.stage = stage;
         this.observerList = new ArrayList<>();
         addToCartBtn.setOnMouseClicked(event -> {
             notifyObservers();
+        });
+
+        mediaImage.setOnMouseClicked(e -> {
+            try {
+                MediaDetailHandler mediaDetailHandler = new MediaDetailHandler(this.stage, ViewsConfig.MEDIA_DETAIL_PATH, this.media);
+                mediaDetailHandler.show();
+            } catch (IOException e1) {
+                LOGGER.info(e1.getMessage());
+                try {
+                    PopupScreen.error(e1.getMessage());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } catch (MediaNotAvailableException e1) {
+                LOGGER.info(e1.getMessage());
+                try {
+                    PopupScreen.error(e1.getMessage());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+
         });
         setMediaInfo();
     }
