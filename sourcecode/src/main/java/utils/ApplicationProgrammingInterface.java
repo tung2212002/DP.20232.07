@@ -34,13 +34,13 @@ public class ApplicationProgrammingInterface {
 		conn.setRequestMethod("GET");
 		conn.setRequestProperty("Authorization", "Bearer " + token);
 		// Clean code: sử dụng tên biến in chưa rõ ràng, nên đặt tên rõ ràng hơn
-		BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 		String inputLine;
 		StringBuilder respone = new StringBuilder(); // ising StringBuilder for the sake of memory and performance
-		while ((inputLine = in.readLine()) != null)
+		while ((inputLine = bufferedReader.readLine()) != null)
 			System.out.println(inputLine);
 		respone.append(inputLine + "\n");
-		in.close();
+		bufferedReader.close();
 		LOGGER.info("Respone Info: " + respone.substring(0, respone.length() - 1).toString());
 		return respone.substring(0, respone.length() - 1).toString();
 	}

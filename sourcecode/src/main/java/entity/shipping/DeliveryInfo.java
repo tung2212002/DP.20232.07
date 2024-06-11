@@ -23,13 +23,13 @@ import entity.order.Order;
 
 public class DeliveryInfo {
 
-    protected String name;
-    protected String phone;
-    protected String province;
-    protected String address;
-    protected String shippingInstructions;
-    protected DistanceCalculator distanceCalculator;
-    protected StrategyShippingFeeCalculator strategyShippingFeeCalculator;
+    private String name;
+    private String phone;
+    private String province;
+    private String address;
+    private String shippingInstructions;
+    private DistanceCalculator distanceCalculator;
+    private StrategyShippingFeeCalculator strategyShippingFeeCalculator;
 
     public DeliveryInfo(String name, String phone, String province, String address, String shippingInstructions,
                         DistanceCalculator distanceCalculator) {

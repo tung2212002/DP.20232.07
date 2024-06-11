@@ -91,9 +91,9 @@ public class HomeScreenHandler extends BaseScreenHandler implements Observer {
         try {
             // Clean code: medium đang thể hiện là danh sách media, nên nên đặt tên rõ ràng
             // hơn
-            List medium = getBController().getAllMedia();
+            List mediaList  = getBController().getAllMedia();
             this.homeItems = new ArrayList<>();
-            for (Object object : medium) {
+            for (Object object : mediaList ) {
                 Media media = (Media) object;
                 MediaHandler m = new MediaHandler(ViewsConfig.HOME_MEDIA_PATH, media);
                 m.attach(this);

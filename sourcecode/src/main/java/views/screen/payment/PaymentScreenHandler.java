@@ -97,7 +97,6 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		});
 
 		paymentMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-			System.out.println("Selected: " + newValue);
 			if (newValue == creditCard) {
 				cardInfo.setDisable(false);
 				cardInfo.setVisible(true);

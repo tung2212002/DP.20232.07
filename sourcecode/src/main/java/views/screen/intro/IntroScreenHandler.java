@@ -13,10 +13,15 @@ import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
+import views.screen.ViewsConfig;
 import views.screen.popup.PopupScreen;
 
 /*
  * SOLID - Liskov substitution principle: IntroScreenHandler không cần thiết triển khai một số phương thức của BaseScreenHandler như setPreviousScreen
+ */
+
+/*
+* Clean code: tên đường đến logo nên được lưu trong một biến static final LOGO_PATH của ViewsConfig
  */
 
 public class IntroScreenHandler extends BaseScreenHandler {
@@ -38,7 +43,7 @@ public class IntroScreenHandler extends BaseScreenHandler {
 
     @Override
     protected void setupFunctionality() throws Exception {
-        File file = new File("src/main/resources/assets/images/Logo.png");
+        File file = new File(ViewsConfig.LOGO_PATH);
         Image image = new Image(file.toURI().toString());
         logo.setImage(image);
     }

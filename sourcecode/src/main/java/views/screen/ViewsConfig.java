@@ -29,9 +29,10 @@ public class ViewsConfig {
     public static final String HOME_MEDIA_PATH = "/views/fxml/media_home.fxml";
     public static final String POPUP_PATH = "/views/fxml/popup.fxml";
 
-    public static float PERCENT_VAT = 10;
+    public static final String LOGO_PATH = "src/main/resources/assets/images/Logo.png";
+    public static final float PERCENT_VAT = 10;
 
-    public static Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
+    public static final Font REGULAR_FONT = Font.font("Segoe UI", FontWeight.NORMAL, FontPosture.REGULAR, 24);
 
     public static String getCurrencyFormat(int num) {
         Locale vietnam = new Locale("vi", "VN");

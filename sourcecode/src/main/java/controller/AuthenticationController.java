@@ -28,7 +28,7 @@ import java.util.Objects;
  */
 
 // Temporal cohesion: md5() không liên quan đến class chỉ thực hiện theo thứ tự
-// thời gian bởi việc thực hiện login() sử dụng md5() nên để md5() ở phần utils
+// thời gian bởi việc thực hiện login() sử dụng md5() nên để md5() ở phần khác
 
 public class AuthenticationController extends BaseController {
 
