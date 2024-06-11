@@ -34,7 +34,7 @@
       </Label>
       <VBox layoutX="114.0" layoutY="163.0" prefHeight="500.0" prefWidth="500.0">
          <children>
-            <RadioButton fx:id="creditCard" disable="true" mnemonicParsing="false" selected="true" text="CreditCard">
+            <RadioButton fx:id="creditCard" mnemonicParsing="false" onAction="#SetCredit" selected="true" text="CreditCard">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
@@ -42,12 +42,12 @@
                   <ToggleGroup fx:id="paymentMethod" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="cod" disable="true" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="COD" toggleGroup="$paymentMethod">
+            <RadioButton fx:id="cod" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" text="COD" toggleGroup="$paymentMethod">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
             </RadioButton>
-            <RadioButton fx:id="domesticCard" disable="true" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" text="DomesticCard" toggleGroup="$paymentMethod">
+            <RadioButton fx:id="domesticCard" layoutX="10.0" layoutY="42.0" mnemonicParsing="false" text="DomesticCard" toggleGroup="$paymentMethod">
                <font>
                   <Font name="Calibri" size="24.0" />
                </font>
