@@ -29,8 +29,7 @@ public class ViewCartController extends BaseController {
      * @return subtotal
      */
     public int getCartSubtotal() {
-        int subtotal = Cart.getInstance().calSubtotal();
-        return subtotal;
+        return Cart.getInstance().calSubtotal();
     }
 
 }
