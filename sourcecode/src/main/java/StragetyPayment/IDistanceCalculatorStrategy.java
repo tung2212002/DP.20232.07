@@ -1,6 +1,8 @@
 package StragetyPayment;
 
+import entity.order.Order;
+
 public interface IDistanceCalculatorStrategy {
-    int calculateDistance(String address, String province);
+    int calculateFee(Order order);
 }
 

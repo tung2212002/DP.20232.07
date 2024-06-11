@@ -53,6 +53,7 @@ public class MediaDAO {
         return null;
     }
 
+    //Stamp coupling: Truyền vào tbname nhưng không dùng đến
     public void updateMediaFieldById(String tbname, int id, String field, Object value) throws SQLException {
         Statement stm = AIMSDB.getConnection().createStatement();
         if (value instanceof String) {
