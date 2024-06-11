@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Hashtable;
 import java.util.Map;
 
+import StragetyPayment.IPaymentStrategy;
 import StragetyPayment.PaymentContext;
 import common.exception.InvalidCardException;
 import common.exception.PaymentException;
@@ -68,6 +69,7 @@ public class PaymentController extends BaseController {
 	 */
 	private Card card;
 
+	private PaymentContext context;
 	/**
 	 * Represent the Interbank subsystem
 	 */
@@ -86,16 +88,13 @@ public class PaymentController extends BaseController {
 	 * @return {@link Map Map} represent the payment result with a
 	 *         message.
 	 */
-	public Map<String, String> payOrder(int amount, String contents, CardDTO cartInfo, CardType cardType) {
+	public Map<String, String> payOrder(int amount, String contents, IPaymentStrategy strategy) {
 		Map<String, String> result = new Hashtable<String, String>();
 		result.put("RESULT", "PAYMENT FAILED!");
 		try {
 
-			CardFactory factory = CardFactoryProvider.getFactory(cardType);
-			this.card = factory.create(cartInfo);
-
 			this.interbank = new InterbankSubsystem();
-			PaymentContext context = new PaymentContext(new InterbankSubsystem(card));
+			context.setStrategy(strategy);
 			PaymentDetail transaction = context.executePayment(amount, contents);
 
 			result.put("RESULT", "PAYMENT SUCCESSFUL!");

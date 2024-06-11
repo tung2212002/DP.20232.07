@@ -1,20 +1,26 @@
 package views.screen.payment;
 
+import StragetyPayment.IPaymentStrategy;
+import StragetyPayment.PaymentContext;
+import common.interfaces.CardFactory;
 import controller.PaymentController;
 import dto.payment.CardDTO;
 import dto.payment.CreditCardDTO;
 import entity.cart.Cart;
 import entity.invoice.Invoice;
 import entity.payment.type.CardType;
+import factory.payment.CardFactoryProvider;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import subsystem.InterbankSubsystem;
 import utils.Utils;
 import views.screen.BaseScreenHandler;
 import views.screen.ViewsConfig;
 import views.screen.popup.PopupScreen;
+import entity.payment.Card;
 
 import java.io.IOException;
 import java.util.Map;
@@ -73,6 +79,9 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 	@FXML
 	private TextField issueBank;
 
+	@FXML
+	private ToggleGroup paymentMethod;
+
 	private CardType cardType;
 
 
@@ -95,6 +104,7 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 				System.out.println(exp.getStackTrace());
 			}
 		});
+<<<<<<< Updated upstream
 
 		paymentMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
 			System.out.println("Selected: " + newValue);
@@ -110,6 +120,22 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 				cardInfo.setVisible(true);
 				domestic.setVisible(true);
 				credit.setVisible(false);
+=======
+		paymentMethod.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue == creditCard) {
+				cardInfo.setVisible(true);
+				creditCard.setVisible(true);
+				domestic.setVisible(false);
+			} else if (newValue == cod) {
+				cardInfo.setVisible(false);
+				creditCard.setVisible(false);
+				domestic.setVisible(false);
+			} else if (newValue == domesticCard)
+			{
+				cardInfo.setVisible(true);
+				creditCard.setVisible(false);
+				domestic.setVisible(true);
+>>>>>>> Stashed changes
 			}
 		});
 	}
@@ -120,11 +146,18 @@ public class PaymentScreenHandler extends BaseScreenHandler {
 		PaymentController ctrl = (PaymentController) getBController();
 		this.cardType = CardType.CREDIT;
 		CardDTO cardInfo = new CreditCardDTO(cardNumber.getText(), holderName.getText(), expirationDate.getText(), securityCode.getText());
-		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, cardInfo, cardType);
+		CardFactory factory = CardFactoryProvider.getFactory(cardType);
+		Card card = factory.create(cardInfo);
+		InterbankSubsystem interbank = new InterbankSubsystem(card);
+		Map<String, String> response = ctrl.payOrder(invoice.getAmount(), contents, interbank);
 		BaseScreenHandler resultScreen = new ResultScreenHandler(this.stage, ViewsConfig.RESULT_SCREEN_PATH, response);
 		resultScreen.setPreviousScreen(this);
 		resultScreen.setHomeScreenHandler(homeScreenHandler);
 		resultScreen.setScreenTitle("Result Screen");
 		resultScreen.show();
+	}
+
+	private void SetCredit() {
+		System.out.println("SetCredit");
 	}
 }
